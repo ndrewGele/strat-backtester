@@ -9,8 +9,7 @@ new_or_update <- function(db.con, strategy.list) {
       tbl('backtests') %>% 
       filter(strategy %in% !!strategy.list) %>% 
       collect()
-    print(previous_backtests_df)
-    
+
     # Just make a new backtest if existing data is all updated
     if(min(previous_backtests_df$end_date) == Sys.Date()) {
       message('All appear to be up to date. Trying new backtest')
@@ -20,10 +19,6 @@ new_or_update <- function(db.con, strategy.list) {
       # Find all backtests that could potentially get updated
       updated_backtests_df <- previous_backtests_df %>% 
         slice_max(order_by = end_date, n = 1)
-      print(updated_backtests_df)
-      
-      print(names(previous_backtests_df))
-      print(names(updated_backtests_df))
       
       old_backtests_df <- anti_join(
         previous_backtests_df,

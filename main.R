@@ -248,8 +248,8 @@ stock_roi <- round(
 )
 
 
-print(glue::glue('strat_roi: {strat_roi}'))
-print(glue::glue('voo_roi: {voo_roi}'))
+message(glue::glue('strat_roi: {strat_roi}'))
+message(glue::glue('voo_roi: {voo_roi}'))
 strat_vs_voo <- round(strat_roi / voo_roi, 6)
 strat_vs_stock <- round(strat_roi / stock_roi, 6)
 
