@@ -30,14 +30,14 @@ pick_params <- function(
       # If update, just find an un-updated param set
       picked_params <- previous_backtests_df %>% 
         slice_min(order_by = end_date, n = 1) %>% 
-        pluck(parameter_set) %>% 
+        purrr::pluck(parameter_set) %>% 
         sample(size = 1)
       
     } else if(backtest.mode == 'new') {
       
       # If new, let's consider controlling an existing parameter
       tried_params <- previous_backtests_df %>% 
-        pluck(parameter_set)
+        purrr::pluck(parameter_set)
       
       # RNG time
       if(runif(1) < max(.01, (1/(length(tried_params) + 4)))) {

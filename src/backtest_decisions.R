@@ -62,10 +62,9 @@ backtest_decisions <- function(decisions.df, ohlc.df, starting.cash) {
         open_order <- current_row
       }
       
-      
     } # end of after hours
     
-    # Market hours, execute open orders is prices are right
+    # Market hours, execute open orders if prices are right
     if(current_row$time == 'market hours' & !is.na(open_order$decision)) {
       
       current_row$old_qty <- as.integer(current_qty)
